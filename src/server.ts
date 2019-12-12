@@ -38,10 +38,10 @@ app.get("/filteredimage", async (req: Request, res: Response) => {
 
   try {
     let image = await filterImageFromURL(imageUrl)
+    
     res.status(201).sendFile(image)
     
-    res.on('finish', () => deleteLocalFiles([image]));
-    
+    res.on('finish', () => deleteLocalFiles([image]));    
   } catch(err) {
     res.status(400).send({ message: err})
  }
